@@ -29,11 +29,30 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * --------------@Autowired:用于其他如：
  * 构造器，方法,放在方法的参数上的话可以省略
  * 也可以放在@Bean定义的方法参数上，可以省略。
+ *
+ * 重点来了：
+ * 自定义的组件如果想用到spring容器底层的一些东西的话（例如ApplicationContext,BeanFactory，等等）
+ * 可以在自定义组件中实现xxxAware接口
+ * xxxAware:都对应一个xxxProcessor来处理的BeanNameAware 是在bean初始化时的invokeAwareMethods方法中设置
+ * 		if (bean instanceof Aware) {
+ * 			if (bean instanceof BeanNameAware) {
+ * 				((BeanNameAware) bean).setBeanName(beanName);
+ *                        }
+ * 			if (bean instanceof BeanClassLoaderAware) {
+ * 				ClassLoader bcl = getBeanClassLoader();
+ * 				if (bcl != null) {
+ * 					((BeanClassLoaderAware) bean).setBeanClassLoader(bcl);
+ *                }
+ *            }
+ * 			if (bean instanceof BeanFactoryAware) {
+ * 				((BeanFactoryAware) bean).setBeanFactory(AbstractAutowireCapableBeanFactory.this);
+ *            }
+ *       }
  */
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext a = applicationContext();
-        MyController c = (MyController)a.getBean("myController");
+/*        MyController c = (MyController)a.getBean("myController");
         System.out.println(c.print());
         MyController1 c1 = (MyController1)a.getBean("myController1");
         System.out.println(c1.print());
@@ -49,7 +68,7 @@ public class Main {
         Person1 peson11 = (Person1)a.getBean("person11");
         Person p = peson11.getPerson();
         Person pp = (Person)a.getBean("person");
-        System.out.println(p==pp);
+        System.out.println(p==pp);*/
     }
     public static AnnotationConfigApplicationContext applicationContext(){
         AnnotationConfigApplicationContext a = new AnnotationConfigApplicationContext(MyConfig.class);
