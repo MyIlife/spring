@@ -1,0 +1,20 @@
+createBeanInstance(beanName, mbd, args); //实例化bean
+populateBean(beanName, mbd, instanceWrapper);//属性赋值（依赖注入等）
+initializeBean(beanName, exposedObject, mbd); // 初始化bean
+{
+    applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName); // 执行beanPostProcessor的postProcessBeforeInitialization方法
+        {
+            循环遍历所有beanPostProcessor,并调用方法
+        }
+    invokeInitMethods(beanName, wrappedBean, mbd);// 执行初始化方法
+    applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
+        {
+             循环遍历所有beanPostProcessor,并调用方法
+        }
+}
+扩展：
+1.获得ApplicationContext的ApplicationContextAwareProcessor
+2.数据校验的BeanValidationPostProcessor
+3.用于@PostConstruct和@PreDestroy工作的InitDestroyAnnotationBeanPostProcessor(获取方法上的@PostConstruct和@PreDestroy注解并调用对应的方法)
+4.用于@Autowired的AutowiredAnnotationBeanPostProcessor
+5.@Aysnc
