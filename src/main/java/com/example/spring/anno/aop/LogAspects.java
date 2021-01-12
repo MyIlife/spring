@@ -1,4 +1,4 @@
-package com.example.spring.aop.test;
+package com.example.spring.anno.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class LogAspects {
 
     //切入点表达式的抽象
-    @Pointcut("execution(public void com.example.spring.aop.test.UserController.*(..))")
+    @Pointcut("execution(public void com.example.spring.anno.aop.UserController.*(..))")
     public void pointCut(){}
 
     //第1种切入点表达式用法：直接写方法表示调用本类的@Pointcut定义的切入点表达式
@@ -26,7 +26,7 @@ public class LogAspects {
         System.out.println("user buy before");
     }
     //第2种切入点表达式用法：这个方法可以在其他类中调用 @Pointcut 定义的切入点表达式
-    @After("com.example.spring.aop.test.LogAspects.pointCut()")
+    @After("com.example.spring.anno.aop.LogAspects.pointCut()")
     public void afterUserBuy(){
         System.out.println("user buy after");
     }

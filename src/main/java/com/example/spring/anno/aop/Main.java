@@ -1,5 +1,4 @@
-package com.example.spring.aop.test;
-
+package com.example.spring.anno.aop;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

@@ -23,7 +23,7 @@ public class MyAspect {
         System.out.println("user buy before");
     }
     //第2种切入点表达式用法：这个方法可以在其他类中调用 @Pointcut 定义的切入点表达式
-    @After("com.example.spring.aop.test.LogAspects.pointCut()")
+    @After("com.example.spring.anno.aop.LogAspects.pointCut()")
     public void afterUserBuy(){
         System.out.println("user buy after");
     }
