@@ -14,6 +14,7 @@ import com.example.spring.ioc.importclass.MyImportSelector;
 import com.example.spring.ioc.importclass.ImportClass1;
 import com.example.spring.ioc.lazyclass.MyLazyClass;
 import com.example.spring.ioc.lifecycleclass.LifecycleClass2;
+import com.example.spring.ioc.proxyclass.UserController;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -41,11 +42,13 @@ import java.util.concurrent.TimeUnit;
         @ComponentScan("com.example.spring.ioc.lifecycleclass"),
         @ComponentScan("com.example.spring.ioc.postprocessorclass"),
         @ComponentScan("com.example.spring.ioc.factorybeanclass"),
-        @ComponentScan("com.example.spring.ioc.eventandlistenerclass")
+        @ComponentScan("com.example.spring.ioc.eventandlistenerclass"),
+        @ComponentScan("com.example.spring.ioc.proxyclass")
 })
 //开启异步调用
 @EnableAsync
-@Configuration
+@EnableAspectJAutoProxy
+//@Configuration
 public class IocConfig {
     public static final String MY_CONDITION = "hello";
 
@@ -129,6 +132,12 @@ public class IocConfig {
             orderService.addOrder(o);
         }
         System.out.println("事件发送结束");
+        /**
+         * 代理测试
+         */
+        UserController u = (UserController) applicationContext.getBean("userController");
+        System.out.println(u instanceof UserController);
+        u.buy("买个毛线");
         applicationContext.close();
     }
     public static AnnotationConfigApplicationContext applicationContext(){
