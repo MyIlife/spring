@@ -1,4 +1,4 @@
-package com.example.spring.beanfactorypostprocessor;
+package com.example.spring.processor;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

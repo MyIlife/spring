@@ -1,4 +1,4 @@
-package com.example.spring.applicationlistener;
+package com.example.spring.listener;
 
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

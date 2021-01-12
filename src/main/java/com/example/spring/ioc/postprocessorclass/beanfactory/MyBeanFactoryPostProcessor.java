@@ -1,4 +1,4 @@
-package com.example.spring.beanfactorypostprocessor;
+package com.example.spring.ioc.postprocessorclass.beanfactory;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -9,11 +9,7 @@ import org.springframework.stereotype.Component;
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        System.out.println("我的 beanFactoryPostProcessor");
-        String[] beanDefinitionNames = beanFactory.getBeanDefinitionNames();
-        for (int i = 0; i < beanDefinitionNames.length; i++) {
-            String beanDefinitionName = beanDefinitionNames[i];
-            System.out.println(beanDefinitionName);
-        }
+        System.out.println("BeanFactoryPostProcessor后置处理器MyBeanFactoryPostProcessor.postProcessBeanFactory执行");
+
     }
 }

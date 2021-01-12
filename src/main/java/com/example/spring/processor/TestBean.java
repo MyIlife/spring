@@ -1,4 +1,4 @@
-package com.example.spring.beanfactorypostprocessor;
+package com.example.spring.processor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
